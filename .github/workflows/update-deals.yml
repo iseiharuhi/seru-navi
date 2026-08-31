@@ -1,0 +1,53 @@
+name: Update deals.json from Rakuten API
+
+on:
+  schedule:
+    # 15分間隔で実行を試みます(毎時 07分・22分・37分・52分)。
+    # 意図的に「0分・30分ちょうど」を避けています。GitHub Actionsは毎時0分などの
+    # キリのいい時刻に実行が集中して混み合いやすく、遅延・間引きが起きやすいためです。
+    # 【重要】GitHub Actionsの無料枠のスケジュール実行は「ちょうど15分毎」を保証しません。
+    # 混雑状況によっては数分〜数十分遅れることがあります。また60日間リポジトリへの
+    # 操作(push等)が無いとスケジュール実行が自動停止する仕様があるため、その場合は
+    # 手動で一度 "Run workflow" を実行すると再開します。
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch: {}   # Actionsタブから手動実行するためのボタンが表示されます(テスト用)
+
+permissions:
+  contents: write   # deals.json をコミット・プッシュするために必要
+
+concurrency:
+  group: update-deals
+  cancel-in-progress: false
+
+jobs:
+  update-deals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch deals from Rakuten API
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+          RAKUTEN_GENRE_IDS: ${{ vars.RAKUTEN_GENRE_IDS }}
+          RAKUTEN_KEYWORDS: ${{ vars.RAKUTEN_KEYWORDS }}
+          RAKUTEN_MIN_POINT_RATE: ${{ vars.RAKUTEN_MIN_POINT_RATE }}
+        run: python3 scripts/update_deals.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "deal-site-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet -- data/deals.json; then
+            echo "No changes to deals.json"
+          else
+            git add data/deals.json
+            git commit -m "auto: update deals.json ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
