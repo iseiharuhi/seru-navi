@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%9B%92%3C/text%3E%3C/svg%3E">
+<title>Amazon特集のセール情報一覧｜セールナビ</title>
+<meta name="description" content="Amazon特集で開催中・開催予定のセールやキャンペーンをまとめています。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="セールナビ">
+<meta property="og:title" content="Amazon特集のセール情報一覧｜セールナビ">
+<meta property="og:description" content="Amazon特集で開催中・開催予定のセールやキャンペーンをまとめています。">
+<link rel="stylesheet" href="../css/style.css">
+<script defer src="../js/config.js"></script>
+<script defer src="../js/main.js"></script>
+</head>
+<body data-root="..">
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<div class="pr-banner">
+  当サイトはAmazonアソシエイト・楽天アフィリエイト等の広告プログラムを利用し、商品購入に応じて紹介料を得ています。
+  <a href="../pages/disclosure.html">広告についての詳細</a>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="../index.html">セール<span class="dot">ナビ</span></a>
+    <button class="nav-toggle" aria-label="メニュー">☰</button>
+    <nav class="main-nav">
+      <a href="../index.html">トップ</a>
+<a href="../pages/category-amazon.html" aria-current="page">Amazon特集</a>
+<a href="../pages/category-rakuten.html">楽天特集</a>
+<a href="../pages/category-asp.html">サービス・その他</a>
+<a href="../pages/about.html">このサイトについて</a>
+
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="section">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">トップ</a> &gt; Amazon特集</div>
+    <div class="section-head">
+      <h2>🟠 Amazon特集のセール情報一覧</h2>
+    </div>
+    <p style="max-width:640px;color:var(--text-muted);font-size:14px;margin-bottom:20px;">Amazonで開催中のセール・タイムセール情報をまとめています。スマイルSALEやブラックフライデーなど、年間の主要セールに合わせて随時更新します。</p>
+
+    <div class="filter-bar" data-filter-target="deal-grid-cat">
+      <div class="filter-group">
+        <button class="chip" data-store="amazon" aria-pressed="true">すべて表示中</button>
+      </div>
+      <select class="sort-select" data-sort-target="deal-grid-cat">
+        <option value="new">新着順</option>
+        <option value="discount">割引率順</option>
+        <option value="ending">終了間近順</option>
+      </select>
+    </div>
+
+    <div class="deal-grid" id="deal-grid-cat"></div>
+  </div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    initDealGrid("deal-grid-cat", { fixedStore: "amazon" });
+  });
+</script>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand">セール<span style="color:var(--accent)">ナビ</span></div>
+      <p class="footer-desc">
+        Amazon・楽天市場・各種ASPのセール情報やお得なキャンペーンをまとめてお届けするサイトです。
+        紹介する情報は執筆時点のものです。価格・在庫・キャンペーン内容は必ず公式サイトでご確認ください。
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>カテゴリ</h4>
+      <a href="../pages/category-amazon.html">Amazon特集</a>
+      <a href="../pages/category-rakuten.html">楽天特集</a>
+      <a href="../pages/category-asp.html">サービス・その他</a>
+    </div>
+    <div class="footer-col">
+      <h4>サイト情報</h4>
+      <a href="../pages/about.html">このサイトについて</a>
+      <a href="../pages/disclosure.html">アフィリエイト広告表記</a>
+      <a href="../pages/privacy.html">プライバシーポリシー</a>
+      <a href="../pages/contact.html">お問い合わせ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 セールナビ. サンプルサイト(本番公開前に内容をご確認ください)</div>
+</footer>
+</body>
+</html>
