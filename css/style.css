@@ -1,0 +1,282 @@
+/* =========================================================
+   セールナビ - デザインシステム
+   ========================================================= */
+:root{
+  --bg:#f7f7f5;
+  --surface:#ffffff;
+  --surface-2:#f1f0ec;
+  --text:#1c1b19;
+  --text-muted:#6b6862;
+  --border:#e4e1da;
+
+  --brand:#1b3a5c;      /* 信頼感のあるネイビー */
+  --brand-dark:#122943;
+  --accent:#e6482e;     /* セール感のあるレッド */
+  --accent-dark:#c23a23;
+  --sale-yellow:#f5a623;
+
+  --amazon:#ff9900;
+  --rakuten:#bf0000;
+  --asp:#2c7a51;
+
+  --radius-sm:6px;
+  --radius:12px;
+  --radius-lg:18px;
+  --shadow-sm:0 1px 3px rgba(20,20,15,.08);
+  --shadow-md:0 6px 20px rgba(20,20,15,.10);
+
+  --container:1120px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#15140f;
+    --surface:#201f19;
+    --surface-2:#2a2820;
+    --text:#f1efe9;
+    --text-muted:#a8a498;
+    --border:#3a382f;
+    --brand:#4f83b5;
+    --brand-dark:#7ba7cf;
+    --shadow-sm:0 1px 3px rgba(0,0,0,.4);
+    --shadow-md:0 6px 20px rgba(0,0,0,.5);
+  }
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+.container{ max-width:var(--container); margin:0 auto; padding:0 20px; }
+
+/* ---------- 共通:PR / アフィリエイト表記バナー ---------- */
+.pr-banner{
+  background:var(--surface-2);
+  border-bottom:1px solid var(--border);
+  font-size:12.5px;
+  color:var(--text-muted);
+  text-align:center;
+  padding:6px 12px;
+}
+.pr-banner a{ text-decoration:underline; }
+
+/* ---------- ヘッダー ---------- */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:14px 20px;
+}
+.logo{
+  display:flex; align-items:center; gap:8px;
+  font-size:20px; font-weight:800; color:var(--brand);
+  letter-spacing:.02em;
+}
+.logo .dot{ color:var(--accent); }
+.main-nav{ display:flex; gap:4px; flex-wrap:wrap; }
+.main-nav a{
+  padding:8px 12px; border-radius:999px; font-size:14px; font-weight:600;
+  color:var(--text-muted);
+}
+.main-nav a:hover, .main-nav a[aria-current="page"]{
+  background:var(--surface-2); color:var(--text);
+}
+.nav-toggle{ display:none; }
+
+@media (max-width:760px){
+  .main-nav{
+    display:none; width:100%; order:3;
+    padding-top:10px; border-top:1px solid var(--border); margin-top:10px;
+  }
+  .header-inner{ flex-wrap:wrap; }
+  .main-nav.open{ display:flex; }
+  .nav-toggle{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:38px; height:38px; border-radius:8px; border:1px solid var(--border);
+    background:var(--surface); font-size:18px; cursor:pointer;
+  }
+}
+
+/* ---------- ヒーロー ---------- */
+.hero{
+  background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);
+  color:#fff; padding:40px 0 34px;
+}
+.hero h1{ font-size:clamp(22px,4vw,32px); margin:0 0 8px; font-weight:800; }
+.hero p{ margin:0; color:rgba(255,255,255,.82); font-size:15px; }
+.hero-badges{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+.hero-badge{
+  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);
+  padding:6px 12px; border-radius:999px; font-size:13px; font-weight:600;
+}
+
+/* ---------- セクション見出し ---------- */
+.section{ padding:36px 0; }
+.section-head{
+  display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+  margin-bottom:18px; flex-wrap:wrap;
+}
+.section-head h2{ font-size:20px; margin:0; font-weight:800; }
+.section-head .desc{ font-size:13px; color:var(--text-muted); }
+.link-more{ font-size:13.5px; font-weight:700; color:var(--brand); white-space:nowrap; }
+
+/* ---------- フィルター / 並び替え ---------- */
+.filter-bar{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  margin-bottom:20px; padding:12px 14px; background:var(--surface);
+  border:1px solid var(--border); border-radius:var(--radius);
+}
+.filter-group{ display:flex; gap:6px; flex-wrap:wrap; }
+.chip{
+  border:1px solid var(--border); background:var(--surface);
+  padding:6px 14px; border-radius:999px; font-size:13px; font-weight:600;
+  cursor:pointer; color:var(--text-muted);
+}
+.chip[aria-pressed="true"]{
+  background:var(--brand); border-color:var(--brand); color:#fff;
+}
+.sort-select{
+  margin-left:auto; padding:7px 10px; border-radius:8px; border:1px solid var(--border);
+  background:var(--surface); color:var(--text); font-size:13px;
+}
+
+/* ---------- 商品/セールカード ---------- */
+.deal-grid{
+  display:grid; gap:18px;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+}
+.deal-card{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  overflow:hidden; box-shadow:var(--shadow-sm); display:flex; flex-direction:column;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.deal-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); }
+.deal-thumb{
+  position:relative; aspect-ratio:4/3; background:var(--surface-2);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.deal-thumb img{ width:100%; height:100%; object-fit:cover; }
+.deal-thumb .emoji{ font-size:48px; }
+.store-tag{
+  position:absolute; top:8px; left:8px; font-size:11px; font-weight:800;
+  color:#fff; padding:3px 9px; border-radius:6px; letter-spacing:.03em;
+}
+.store-tag.amazon{ background:var(--amazon); color:#1b1200; }
+.store-tag.rakuten{ background:var(--rakuten); }
+.store-tag.asp{ background:var(--asp); }
+.discount-badge{
+  position:absolute; top:8px; right:8px; background:var(--accent); color:#fff;
+  font-weight:800; font-size:12.5px; padding:4px 8px; border-radius:6px;
+}
+.discount-badge.point{ background:var(--sale-yellow); color:#3a2500; }
+.deal-body{ padding:14px; display:flex; flex-direction:column; gap:8px; flex:1; }
+.deal-title{ font-size:14.5px; font-weight:700; line-height:1.5; }
+.deal-price-row{ display:flex; align-items:baseline; gap:8px; margin-top:auto; }
+.deal-price{ font-size:19px; font-weight:800; color:var(--accent-dark); }
+.deal-price-orig{ font-size:12.5px; color:var(--text-muted); text-decoration:line-through; }
+.deal-meta{ font-size:11.5px; color:var(--text-muted); display:flex; gap:8px; flex-wrap:wrap; }
+.deal-cta{
+  margin-top:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand); color:#fff; font-weight:700; font-size:13.5px;
+  padding:9px 12px; border-radius:8px; text-align:center;
+}
+.deal-cta:hover{ background:var(--brand-dark); }
+.deal-cta .rel-note{ display:none; }
+
+.empty-state{
+  padding:40px 16px; text-align:center; color:var(--text-muted);
+  border:1px dashed var(--border); border-radius:var(--radius);
+}
+
+/* ---------- 記事カード ---------- */
+.article-grid{
+  display:grid; gap:18px; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+}
+.article-card{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  overflow:hidden; box-shadow:var(--shadow-sm);
+}
+.article-card .thumb{ aspect-ratio:16/9; background:var(--surface-2); font-size:40px; display:flex; align-items:center; justify-content:center; }
+.article-card .body{ padding:16px; }
+.article-card .cat{ font-size:11px; font-weight:800; color:var(--brand); letter-spacing:.03em; }
+.article-card h3{ font-size:16px; margin:6px 0 8px; }
+.article-card p{ font-size:13px; color:var(--text-muted); margin:0; }
+
+/* ---------- 記事本文ページ ---------- */
+.article-header{ padding:36px 0 20px; border-bottom:1px solid var(--border); }
+.breadcrumb{ font-size:12.5px; color:var(--text-muted); margin-bottom:12px; }
+.breadcrumb a{ text-decoration:underline; }
+.article-header h1{ font-size:clamp(22px,4vw,30px); margin:0 0 10px; }
+.article-header .sub-meta{ font-size:13px; color:var(--text-muted); }
+
+.article-body{ max-width:760px; margin:0 auto; padding:32px 20px; }
+.article-body h2{ font-size:20px; margin:36px 0 12px; padding-top:6px; border-top:3px solid var(--accent); }
+.article-body h3{ font-size:16.5px; margin:24px 0 10px; }
+.article-body p{ margin:0 0 16px; }
+.article-body ul, .article-body ol{ margin:0 0 16px; padding-left:1.3em; }
+.article-body li{ margin-bottom:6px; }
+.article-body table{ width:100%; border-collapse:collapse; margin:0 0 20px; font-size:13.5px; }
+.article-body th, .article-body td{ border:1px solid var(--border); padding:8px 10px; text-align:left; }
+.article-body th{ background:var(--surface-2); }
+
+.disclosure-note{
+  background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:12px 14px; font-size:12.5px; color:var(--text-muted); margin:0 0 22px;
+}
+
+.cta-box{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:18px; margin:22px 0; display:flex; align-items:center; justify-content:space-between;
+  gap:14px; flex-wrap:wrap;
+}
+.cta-box .price{ font-weight:800; color:var(--accent-dark); font-size:18px; }
+.cta-box .btn{
+  background:var(--accent); color:#fff; font-weight:800; padding:11px 20px;
+  border-radius:999px; font-size:14px;
+}
+.cta-box .btn:hover{ background:var(--accent-dark); }
+
+/* ---------- 静的ページ(規約系) ---------- */
+.static-page{ max-width:760px; margin:0 auto; padding:40px 20px 64px; }
+.static-page h1{ font-size:24px; margin-bottom:8px; }
+.static-page .updated{ font-size:12.5px; color:var(--text-muted); margin-bottom:28px; }
+.static-page h2{ font-size:17px; margin:30px 0 10px; }
+.static-page p{ margin:0 0 14px; }
+.static-page ul{ padding-left:1.3em; margin:0 0 14px; }
+
+/* ---------- フッター ---------- */
+.site-footer{
+  background:var(--brand-dark); color:rgba(255,255,255,.85); margin-top:40px;
+}
+.footer-inner{ padding:36px 0 24px; display:grid; gap:28px; grid-template-columns:1.4fr 1fr 1fr; }
+.footer-col h4{ font-size:13px; color:#fff; margin:0 0 12px; letter-spacing:.03em; }
+.footer-col a{ display:block; font-size:13px; padding:4px 0; color:rgba(255,255,255,.75); }
+.footer-col a:hover{ color:#fff; }
+.footer-brand{ font-weight:800; font-size:18px; color:#fff; margin-bottom:8px; }
+.footer-desc{ font-size:12.5px; color:rgba(255,255,255,.6); max-width:36em; }
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.14); padding:16px 20px; text-align:center;
+  font-size:12px; color:rgba(255,255,255,.55);
+}
+@media (max-width:700px){
+  .footer-inner{ grid-template-columns:1fr; padding:28px 0 16px; }
+}
+
+/* ---------- ユーティリティ ---------- */
+.skip-link{
+  position:absolute; left:-999px; top:auto;
+  background:var(--brand); color:#fff; padding:10px 14px; border-radius:6px; z-index:100;
+}
+.skip-link:focus{ left:12px; top:12px; }
