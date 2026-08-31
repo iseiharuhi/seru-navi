@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%9B%92%3C/text%3E%3C/svg%3E">
+<title>お得なセール・キャンペーン情報まとめ｜セールナビ</title>
+<meta name="description" content="Amazon・楽天市場・各種ASPのセール情報を毎日更新。今狙うべきキャンペーンをまとめてチェックできます。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="セールナビ">
+<meta property="og:title" content="お得なセール・キャンペーン情報まとめ｜セールナビ">
+<meta property="og:description" content="Amazon・楽天市場・各種ASPのセール情報を毎日更新。今狙うべきキャンペーンをまとめてチェックできます。">
+<link rel="stylesheet" href="css/style.css">
+<script defer src="js/config.js"></script>
+<script defer src="js/main.js"></script>
+</head>
+<body data-root=".">
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<div class="pr-banner">
+  当サイトはAmazonアソシエイト・楽天アフィリエイト等の広告プログラムを利用し、商品購入に応じて紹介料を得ています。
+  <a href="pages/disclosure.html">広告についての詳細</a>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="index.html">セール<span class="dot">ナビ</span></a>
+    <button class="nav-toggle" aria-label="メニュー">☰</button>
+    <nav class="main-nav">
+      <a href="index.html" aria-current="page">トップ</a>
+<a href="pages/category-amazon.html">Amazon特集</a>
+<a href="pages/category-rakuten.html">楽天特集</a>
+<a href="pages/category-asp.html">サービス・その他</a>
+<a href="pages/about.html">このサイトについて</a>
+
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="hero">
+  <div class="container">
+    <h1>今、狙うべきセール・キャンペーンをまとめてチェック</h1>
+    <p>Amazon・楽天市場・各種サービスのお得な情報を毎日更新。気になる商品は早めにチェックしましょう。</p>
+    <div class="hero-badges">
+      <span class="hero-badge">🟠 Amazon スマイルSALE 開催中の例</span>
+      <span class="hero-badge">🔴 楽天お買い物マラソン 開催中の例</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <section class="section" id="deals">
+    <div class="section-head">
+      <h2>注目のセール情報</h2>
+      <span class="desc">価格・在庫は変動します。購入前に必ず公式ページでご確認ください。</span>
+    </div>
+
+    <div class="filter-bar" data-filter-target="deal-grid-top">
+      <div class="filter-group">
+        <button class="chip" data-store="all" aria-pressed="true">すべて</button>
+        <button class="chip" data-store="amazon" aria-pressed="false">Amazon</button>
+        <button class="chip" data-store="rakuten" aria-pressed="false">楽天</button>
+        <button class="chip" data-store="asp" aria-pressed="false">その他</button>
+      </div>
+      <select class="sort-select" data-sort-target="deal-grid-top">
+        <option value="new">新着順</option>
+        <option value="discount">割引率順</option>
+        <option value="ending">終了間近順</option>
+      </select>
+    </div>
+
+    <div class="deal-grid" id="deal-grid-top"></div>
+  </section>
+
+  <section class="section" id="articles">
+    <div class="section-head">
+      <h2>特集記事</h2>
+      <span class="desc">セールの攻略法やおすすめの選び方をまとめています</span>
+    </div>
+    <div class="article-grid">
+      <a class="article-card" href="pages/article-smile-sale-gadgets.html">
+        <div class="thumb">🎧</div>
+        <div class="body">
+          <div class="cat">Amazon</div>
+          <h3>スマイルSALEで買うべきガジェット選びのポイント</h3>
+          <p>数あるセール品の中から失敗しない選び方を解説します。</p>
+        </div>
+      </a>
+      <a class="article-card" href="pages/article-rakuten-marathon-tips.html">
+        <div class="thumb">🛒</div>
+        <div class="body">
+          <div class="cat">楽天</div>
+          <h3>お買い物マラソンでポイント還元を最大化するコツ</h3>
+          <p>「買う店舗数」と「エントリー」の基本をおさらいします。</p>
+        </div>
+      </a>
+    </div>
+  </section>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    initDealGrid("deal-grid-top");
+  });
+</script>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand">セール<span style="color:var(--accent)">ナビ</span></div>
+      <p class="footer-desc">
+        Amazon・楽天市場・各種ASPのセール情報やお得なキャンペーンをまとめてお届けするサイトです。
+        紹介する情報は執筆時点のものです。価格・在庫・キャンペーン内容は必ず公式サイトでご確認ください。
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>カテゴリ</h4>
+      <a href="pages/category-amazon.html">Amazon特集</a>
+      <a href="pages/category-rakuten.html">楽天特集</a>
+      <a href="pages/category-asp.html">サービス・その他</a>
+    </div>
+    <div class="footer-col">
+      <h4>サイト情報</h4>
+      <a href="pages/about.html">このサイトについて</a>
+      <a href="pages/disclosure.html">アフィリエイト広告表記</a>
+      <a href="pages/privacy.html">プライバシーポリシー</a>
+      <a href="pages/contact.html">お問い合わせ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 セールナビ. サンプルサイト(本番公開前に内容をご確認ください)</div>
+</footer>
+</body>
+</html>

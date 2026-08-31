@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/index.html</loc></url>
+  <url><loc>https://example.com/pages/category-amazon.html</loc></url>
+  <url><loc>https://example.com/pages/category-rakuten.html</loc></url>
+  <url><loc>https://example.com/pages/category-asp.html</loc></url>
+  <url><loc>https://example.com/pages/article-smile-sale-gadgets.html</loc></url>
+  <url><loc>https://example.com/pages/article-rakuten-marathon-tips.html</loc></url>
+  <url><loc>https://example.com/pages/about.html</loc></url>
+  <url><loc>https://example.com/pages/disclosure.html</loc></url>
+  <url><loc>https://example.com/pages/privacy.html</loc></url>
+  <url><loc>https://example.com/pages/contact.html</loc></url>
+</urlset>
