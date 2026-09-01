@@ -1,0 +1,50 @@
+[
+  {
+    "id": "article-seasonal-sale-calendar",
+    "title": "年間のセール時期を把握しておく基本カレンダーの考え方",
+    "url": "pages/article-seasonal-sale-calendar.html",
+    "category": "総合",
+    "description": "Amazon・楽天市場の大型セールがどの時期に集中しやすいか、年間の基本パターンを解説します。",
+    "publishedAt": "2026-09-01"
+  },
+  {
+    "id": "article-asp-subscription-tips",
+    "title": "格安SIM・サブスクの乗り換えキャンペーンで確認すべき3つの注意点",
+    "url": "pages/article-asp-subscription-tips.html",
+    "category": "サービス",
+    "description": "格安SIMやサブスクサービスの乗り換えキャンペーンに申し込む前に確認しておきたい注意点をまとめました。",
+    "publishedAt": "2026-09-01"
+  },
+  {
+    "id": "article-rakuten-point-calendar",
+    "title": "楽天市場でポイント高還元日を見分ける基本ルール",
+    "url": "pages/article-rakuten-point-calendar.html",
+    "category": "楽天",
+    "description": "楽天市場のポイント高還元の仕組みを、購入前に押さえておきたい基本ルールとして整理します。",
+    "publishedAt": "2026-09-01"
+  },
+  {
+    "id": "article-amazon-timesale-checklist",
+    "title": "Amazonタイムセールで損しないための価格チェック習慣",
+    "url": "pages/article-amazon-timesale-checklist.html",
+    "category": "Amazon",
+    "description": "Amazonのタイムセールで、バッジの割引率だけで判断しないための4つのポイントを解説します。",
+    "publishedAt": "2026-09-01"
+  },
+  {
+    "id": "article-rakuten-marathon-tips",
+    "title": "お買い物マラソンでポイント還元を最大化するコツ",
+    "url": "pages/article-rakuten-marathon-tips.html",
+    "category": "楽天",
+    "description": "楽天お買い物マラソンでポイント還元を最大化するための基本の考え方を解説します。",
+    "publishedAt": "2026-08-29"
+  },
+  {
+    "id": "article-smile-sale-gadgets",
+    "title": "スマイルSALEで買うべきガジェット選びのポイント",
+    "url": "pages/article-smile-sale-gadgets.html",
+    "category": "Amazon",
+    "description": "Amazonのセールでガジェットを選ぶときに失敗しないための3つのポイントを解説します。",
+    "publishedAt": "2026-08-28"
+  }
+]
