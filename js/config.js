@@ -6,15 +6,16 @@
 window.SITE_CONFIG = {
   // サイト基本情報
   siteName: "セールナビ",
-  siteUrl: "https://example.com", // ← 独自ドメインが決まったら書き換えてください
+  siteUrl: "https://seru-navi-deals.netlify.app",
 
   // ---- Amazonアソシエイト ----
-  // 例: "yourid-22" のような、Amazonアソシエイトの「トラッキングID」を入力
+  // Amazonアソシエイトの審査がまだ完了していないため未設定。
+  // 審査通過後、発行された「トラッキングID」(例: "yourid-22")をここに入力してください。
   amazonAssociateTag: "your-associate-id-22",
 
   // ---- 楽天アフィリエイト ----
-  // 楽天アフィリエイトの「あなたのアフィリエイトID」を入力(未取得ならそのまま)
-  rakutenAffiliateId: "YOUR_RAKUTEN_ID",
+  // 楽天ウェブサービスのアプリ登録時に発行された、あなたのアフィリエイトID
+  rakutenAffiliateId: "57026b49.8508b694.57026b4a.5b393bff",
 
   // ---- A8.net など ASP ----
   // ASP案件は発行される専用リンクをそのまま deals.json の url に貼り付けてください
