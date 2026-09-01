@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.com/index.html</loc></url>
-  <url><loc>https://example.com/pages/category-amazon.html</loc></url>
-  <url><loc>https://example.com/pages/category-rakuten.html</loc></url>
-  <url><loc>https://example.com/pages/category-asp.html</loc></url>
-  <url><loc>https://example.com/pages/article-smile-sale-gadgets.html</loc></url>
-  <url><loc>https://example.com/pages/article-rakuten-marathon-tips.html</loc></url>
-  <url><loc>https://example.com/pages/about.html</loc></url>
-  <url><loc>https://example.com/pages/disclosure.html</loc></url>
-  <url><loc>https://example.com/pages/privacy.html</loc></url>
-  <url><loc>https://example.com/pages/contact.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/index.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/category-amazon.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/category-rakuten.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/category-asp.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/article-smile-sale-gadgets.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/article-rakuten-marathon-tips.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/article-amazon-timesale-checklist.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/article-rakuten-point-calendar.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/article-asp-subscription-tips.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/article-seasonal-sale-calendar.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/about.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/disclosure.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/privacy.html</loc></url>
+  <url><loc>https://seru-navi-deals.netlify.app/pages/contact.html</loc></url>
 </urlset>
