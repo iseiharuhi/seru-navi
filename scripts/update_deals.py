@@ -30,8 +30,10 @@ from datetime import datetime, timedelta, timezone
 
 JST = timezone(timedelta(hours=9))
 
-SEARCH_ENDPOINT = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601"
-RANKING_ENDPOINT = "https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20220601"
+# 2026年に楽天ウェブサービスAPIの提供元ドメイン・パスが変更された(旧: app.rakuten.co.jp/services/api/...)。
+# 新エンドポイントは applicationId に加えて accessKey も必須になっている点に注意。
+SEARCH_ENDPOINT = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
+RANKING_ENDPOINT = "https://openapi.rakuten.co.jp/ichibaranking/api/IchibaItem/Ranking/20220601"
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "deals.json")
 
@@ -48,6 +50,8 @@ def env_or_default(name, default):
 
 # ---- 設定(環境変数で上書き可能) ----
 APP_ID = env_or_default("RAKUTEN_APP_ID", "").strip()
+# 2026年のAPI移行でapplicationIdに加えて必須になったキー(楽天ウェブサービスの「Access Key」)
+ACCESS_KEY = env_or_default("RAKUTEN_ACCESS_KEY", "").strip()
 AFFILIATE_ID = env_or_default("RAKUTEN_AFFILIATE_ID", "").strip()
 # カンマ区切りで複数指定可。"0" は総合ランキング。
 # 特定ジャンルのIDは楽天ジャンル検索APIや商品ページのURLから調べて追加してください。
@@ -74,6 +78,7 @@ def api_get(endpoint, params):
 def fetch_ranking(genre_id):
     params = {
         "applicationId": APP_ID,
+        "accessKey": ACCESS_KEY,
         "format": "json",
         "genreId": genre_id,
         "page": 1,
@@ -95,6 +100,7 @@ def fetch_ranking(genre_id):
 def fetch_by_keyword(keyword):
     params = {
         "applicationId": APP_ID,
+        "accessKey": ACCESS_KEY,
         "format": "json",
         "keyword": keyword,
         "hits": 30,
@@ -212,6 +218,9 @@ def merge(existing, new_candidates):
 def main():
     if not APP_ID:
         print("[error] 環境変数 RAKUTEN_APP_ID が設定されていません。処理を中止します。", file=sys.stderr)
+        sys.exit(1)
+    if not ACCESS_KEY:
+        print("[error] 環境変数 RAKUTEN_ACCESS_KEY が設定されていません。処理を中止します。", file=sys.stderr)
         sys.exit(1)
 
     existing = load_existing()
