@@ -77,14 +77,17 @@ Amazon商品のURLに `tag=` パラメータは**自動で付与される**の�
 
 ---
 
-## 4. 無料で公開する方法(おすすめ: GitHub Pages)
+## 4. 公開先(現在: Netlify)
 
-1. GitHubで新しいリポジトリを作成し、このフォルダの中身をすべてアップロード(push)する
-2. リポジトリの Settings → Pages で、公開ブランチを `main`、フォルダを `/(root)` に設定する
-3. 数分後、`https://ユーザー名.github.io/リポジトリ名/` で公開される
-4. 独自ドメインを使いたい場合は、Pages設定の「Custom domain」で設定する
+本プロジェクトは **Netlify** で公開しています(公開URL: `https://seru-navi-deals.netlify.app/`)。
+GitHub Pagesは公開URLに `https://ユーザー名.github.io/...` のようにGitHubアカウント名が出てしまうため、
+それを避ける目的でNetlifyに移行しました(経緯はプロジェクトドキュメント参照)。
 
-Netlify や Cloudflare Pages でも、フォルダをドラッグ&ドロップするだけで同様に公開できます。
+NetlifyはこのGitHubリポジトリ(`main`ブランチ)と連携済みで、`git push` されるたびに自動でビルド・
+再デプロイされます(Continuous Deployment)。つまり `scripts/update_deals.py` が15分毎に
+`data/deals.json` を更新・pushすると、Netlify側も自動的に最新内容に更新されます。追加の作業は不要です。
+
+独自ドメインを使いたくなった場合は、NetlifyのSite settings → Domain managementから設定できます。
 
 ---
 
@@ -116,10 +119,12 @@ Netlify や Cloudflare Pages でも、フォルダをドラッグ&ドロップ�
    | 種類 | 名前 | 値 |
    |------|------|----|
    | Secret | `RAKUTEN_APP_ID` | 手順5-1で取得したアプリID(必須) |
+   | Secret | `RAKUTEN_ACCESS_KEY` | 手順5-1で取得したアクセスキー(必須。2026年のAPI移行で追加された) |
    | Secret | `RAKUTEN_AFFILIATE_ID` | 楽天アフィリエイトID(任意・推奨) |
    | Variable | `RAKUTEN_GENRE_IDS` | 取得したいジャンルIDをカンマ区切りで(任意。省略時は総合ランキング) |
    | Variable | `RAKUTEN_KEYWORDS` | 高ポイント還元商品を探す検索語(任意。省略時は「アウトレット,セール,訳あり」) |
    | Variable | `RAKUTEN_MIN_POINT_RATE` | この倍率以上のポイント還元商品だけ拾う(任意。省略時は5) |
+   | Variable | `RAKUTEN_APP_REFERRER` | 楽天アプリ登録時の「参照先URL」と完全一致させる値(任意。省略時は `https://seru-navi-deals.netlify.app/`)。公開URLを変えたらここも変更すること |
 
    ※ Secretは「Secrets」タブ、Variableは「Variables」タブから登録します。
 
@@ -128,7 +133,23 @@ Netlify や Cloudflare Pages でも、フォルダをドラッグ&ドロップ�
    「Run workflow」ボタンを押して手動テスト実行し、正常終了するか確認する
 5. 問題なければ、以降は15分毎(毎時07分・22分・37分・52分)に自動実行されます
 
-### 5-3. 知っておくべき制限事項
+### 5-3. 楽天アプリのタイプについて(重要)
+
+楽天ウェブサービスでアプリを新規登録する際、「Webアプリケーション」と「API/バックエンドサービス」の
+どちらかを選ぶ必要があります。本プロジェクトは **「Webアプリケーション」タイプ** で登録しています。
+
+- 「API/バックエンドサービス」はIPアドレスでアクセス元を制限する方式です。GitHub Actionsの実行環境は
+  毎回IPアドレスが変わるため、この方式は実質使えません。
+- 「Webアプリケーション」タイプは、アプリ登録時に指定した「参照先URL」(本プロジェクトでは
+  `https://seru-navi-deals.netlify.app/`)と一致する `Origin` / `Referer` ヘッダーを付けてリクエストする
+  ことでアクセスできます。ヘッダーが無い、または登録したURLと一致しないと `403 Forbidden` になります。
+  `scripts/update_deals.py` はこのヘッダーを自動で付与するようになっているので、通常は意識する必要は
+  ありませんが、公開URL(独自ドメイン化など)を変更した場合は、
+  1. 楽天ウェブサービスのアプリ管理画面で「参照先URL」を新しいURLに更新し、
+  2. GitHub Repository Variablesの `RAKUTEN_APP_REFERRER` も同じ値に更新する
+  必要があります。片方だけ更新すると再び403エラーになるので注意してください。
+
+### 5-4. 知っておくべき制限事項
 
 - GitHub Actionsの無料枠のスケジュール実行は「ちょうど15分毎」を厳密には保証しません。実運用では
   数分〜数十分遅れることが珍しくなく、特に毎時0分などキリのいい時刻は混雑しやすいとGitHub公式も
