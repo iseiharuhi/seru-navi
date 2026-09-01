@@ -41,14 +41,21 @@ jobs:
           RAKUTEN_MIN_POINT_RATE: ${{ vars.RAKUTEN_MIN_POINT_RATE }}
         run: python3 scripts/update_deals.py
 
+      # data/deals.json (セール商品) と data/articles.json (特集記事) からRSSフィードを再生成。
+      # X(@serunavi0901)等への自動投稿は、このrss.xmlを無料のRSS連携ツール(dlvr.it等)に
+      # 登録することで実現している(詳細はREADME.md参照)。deals.jsonが変わらない回でも
+      # 常に再生成する(articles.jsonの手動更新にも追従させるため、コストはほぼゼロ)。
+      - name: Generate RSS feed
+        run: python3 scripts/generate_rss.py
+
       - name: Commit and push if changed
         run: |
           git config user.name "deal-site-bot"
           git config user.email "actions@users.noreply.github.com"
-          if git diff --quiet -- data/deals.json; then
-            echo "No changes to deals.json"
+          if git diff --quiet -- data/deals.json rss.xml; then
+            echo "No changes to deals.json / rss.xml"
           else
-            git add data/deals.json
-            git commit -m "auto: update deals.json ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git add data/deals.json rss.xml
+            git commit -m "auto: update deals.json / rss.xml ($(date -u +'%Y-%m-%d %H:%M UTC'))"
             git push
           fi
