@@ -35,18 +35,29 @@ RANKING_ENDPOINT = "https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "deals.json")
 
+def env_or_default(name, default):
+    """os.environ.get(name, default) だと、GitHub Actionsで
+    ${{ vars.FOO }} のように未設定のRepository Variableを参照した場合に
+    空文字列 "" がセットされてしまい、default が使われずエラーになる。
+    ここでは「未設定」と「空文字列」を同じ扱いにして default を返す。"""
+    value = os.environ.get(name)
+    if value is None or value.strip() == "":
+        return default
+    return value
+
+
 # ---- 設定(環境変数で上書き可能) ----
-APP_ID = os.environ.get("RAKUTEN_APP_ID", "").strip()
-AFFILIATE_ID = os.environ.get("RAKUTEN_AFFILIATE_ID", "").strip()
+APP_ID = env_or_default("RAKUTEN_APP_ID", "").strip()
+AFFILIATE_ID = env_or_default("RAKUTEN_AFFILIATE_ID", "").strip()
 # カンマ区切りで複数指定可。"0" は総合ランキング。
 # 特定ジャンルのIDは楽天ジャンル検索APIや商品ページのURLから調べて追加してください。
-GENRE_IDS = [g.strip() for g in os.environ.get("RAKUTEN_GENRE_IDS", "0").split(",") if g.strip()]
+GENRE_IDS = [g.strip() for g in env_or_default("RAKUTEN_GENRE_IDS", "0").split(",") if g.strip()]
 # ポイント倍率がこの値以上の商品を「お得」として拾う
-MIN_POINT_RATE = float(os.environ.get("RAKUTEN_MIN_POINT_RATE", "5"))
+MIN_POINT_RATE = float(env_or_default("RAKUTEN_MIN_POINT_RATE", "5"))
 # 自動取得ぶんとして保持する最大件数(増えすぎ防止)
-MAX_AUTO_ITEMS = int(os.environ.get("RAKUTEN_MAX_AUTO_ITEMS", "40"))
+MAX_AUTO_ITEMS = int(env_or_default("RAKUTEN_MAX_AUTO_ITEMS", "40"))
 # キーワード検索でポイント還元の高い商品を探すときの検索語
-SEARCH_KEYWORDS = [k.strip() for k in os.environ.get("RAKUTEN_KEYWORDS", "アウトレット,セール,訳あり").split(",") if k.strip()]
+SEARCH_KEYWORDS = [k.strip() for k in env_or_default("RAKUTEN_KEYWORDS", "アウトレット,セール,訳あり").split(",") if k.strip()]
 
 REQUEST_INTERVAL_SEC = 1.1  # 楽天APIは1秒に1回までの制限があるため余裕を持たせる
 
