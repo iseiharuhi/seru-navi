@@ -66,12 +66,32 @@ SEARCH_KEYWORDS = [k.strip() for k in env_or_default("RAKUTEN_KEYWORDS", "アウ
 REQUEST_INTERVAL_SEC = 1.1  # 楽天APIは1秒に1回までの制限があるため余裕を持たせる
 
 
+# 楽天ウェブサービスの新API(openapi.rakuten.co.jp)は「Webアプリケーション」タイプの場合、
+# アプリ登録時の「参照先URL(Application URL)」と一致する Origin / Referer ヘッダーが
+# 無いと 403 (REQUEST_CONTEXT_BODY_HTTP_REFERRER_MISSING 等)になる。
+# GitHub Actions(サーバーサイド)から呼ぶ際は明示的にこのヘッダーを付与する必要がある。
+APP_REFERRER = env_or_default("RAKUTEN_APP_REFERRER", "https://seru-navi-deals.netlify.app/").strip()
+
+
 def api_get(endpoint, params):
     query = urllib.parse.urlencode(params)
     url = f"{endpoint}?{query}"
-    req = urllib.request.Request(url, headers={"User-Agent": "deal-site-auto-updater/1.0"})
-    with urllib.request.urlopen(req, timeout=20) as res:
-        body = res.read().decode("utf-8")
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "deal-site-auto-updater/1.0",
+            "Origin": APP_REFERRER.rstrip("/"),
+            "Referer": APP_REFERRER,
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=20) as res:
+            body = res.read().decode("utf-8")
+    except urllib.error.HTTPError as e:
+        # レスポンス本文にエラーの詳細(例: どのヘッダーが足りないか)が入っていることが多いため、
+        # 原因調査のためログに出す。
+        detail = e.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"HTTP {e.code}: {detail}") from None
     return json.loads(body)
 
 
