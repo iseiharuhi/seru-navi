@@ -9,9 +9,9 @@ window.SITE_CONFIG = {
   siteUrl: "https://seru-navi-deals.netlify.app",
 
   // ---- Amazonアソシエイト ----
-  // Amazonアソシエイトの審査がまだ完了していないため未設定。
-  // 審査通過後、発行された「トラッキングID」(例: "yourid-22")をここに入力してください。
-  amazonAssociateTag: "your-associate-id-22",
+  // Amazonアソシエイト・プログラムに登録して発行されたトラッキングID(StoreID)。
+  // ※180日以内に一定の成果実績が無いと申し込みが否認される仕組みのため、早めに実績作りを。
+  amazonAssociateTag: "serunavi-22",
 
   // ---- 楽天アフィリエイト ----
   // 楽天ウェブサービスのアプリ登録時に発行された、あなたのアフィリエイトID
