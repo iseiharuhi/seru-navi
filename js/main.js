@@ -5,6 +5,53 @@
 
 const STORE_LABEL = { amazon: "Amazon", rakuten: "楽天", asp: "その他" };
 
+// 「新着順」で表示する際の店舗の並び順(交互表示の基準)。
+// Amazonの掲載日は手動更新のため楽天(15分毎に自動更新)より古くなりがちで、
+// 単純な日付ソートだとAmazon商品が埋もれてしまう。
+// そのため「新着順」は日付の完全なソートではなく、店舗ごとに新しい順へ並べたグループを
+// この順番でラウンドロビン(交互)に混ぜて表示する。
+const STORE_ORDER = ["amazon", "rakuten", "asp"];
+
+/**
+ * 店舗ごとにグループ化し、各グループ内は publishedAt の新しい順に並べたうえで、
+ * STORE_ORDER の順に1件ずつ交互に取り出して結合する。
+ * (例: Amazon→楽天→その他→Amazon→楽天...の順で、各店舗の在庫が尽きるまで続く)
+ */
+function interleaveByStore(list) {
+  const groups = {};
+  STORE_ORDER.forEach((s) => {
+    groups[s] = [];
+  });
+  const extra = []; // STORE_ORDER に定義のない店舗が来た場合の保険
+
+  list.forEach((d) => {
+    if (groups[d.store]) {
+      groups[d.store].push(d);
+    } else {
+      extra.push(d);
+    }
+  });
+
+  const order = STORE_ORDER.filter((s) => groups[s].length);
+  order.forEach((s) => {
+    groups[s].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  });
+  extra.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
+  const result = [];
+  let added = true;
+  while (added) {
+    added = false;
+    order.forEach((s) => {
+      if (groups[s].length) {
+        result.push(groups[s].shift());
+        added = true;
+      }
+    });
+  }
+  return result.concat(extra);
+}
+
 async function loadDeals() {
   // data/deals.json への相対パスはページの場所によって変わるため、
   // <body data-root="."> や data-root="..": のような形でルートを指定しておく
@@ -96,10 +143,7 @@ async function initDealGrid(gridId, options = {}) {
     deals = deals.filter((d) => d.store === options.fixedStore);
   }
   if (options.limit) {
-    deals = deals
-      .slice()
-      .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-      .slice(0, options.limit);
+    deals = interleaveByStore(deals.slice()).slice(0, options.limit);
   }
 
   let currentStore = "all";
@@ -111,7 +155,7 @@ async function initDealGrid(gridId, options = {}) {
       list = list.filter((d) => d.store === currentStore);
     }
     if (currentSort === "new") {
-      list.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+      list = interleaveByStore(list);
     } else if (currentSort === "discount") {
       list.sort((a, b) => (discountPercent(b) || 0) - (discountPercent(a) || 0));
     } else if (currentSort === "ending") {
