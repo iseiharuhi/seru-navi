@@ -556,5 +556,23 @@
     "description": "楽天ウェブサービスAPIから自動取得した商品です。価格・在庫は変動するため商品ページでご確認ください。",
     "publishedAt": "2026-09-08",
     "source": "rakuten-auto"
+  },
+  {
+    "id": "auto-kanekichionline-10000049",
+    "title": "おかず 時短 【まとめ買い対象商品】カネ吉の惣菜おまかせセット(12袋)",
+    "store": "rakuten",
+    "category": "高ポイント還元",
+    "emoji": "🛍️",
+    "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/kanekichionline/cabinet/mem_item/13300657/imgrc0114333276.jpg?_ex=128x128",
+    "originalPrice": null,
+    "salePrice": 1980,
+    "pointRate": 5,
+    "url": "https://hb.afl.rakuten.co.jp/hgc/g00t328o.542mh5c0.g00t328o.542mic7a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkanekichionline%2Fol_90000999%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkanekichionline%2Fi%2F10000049%2F&rafcid=wsc_i_is_b686af06-9917-4702-a3cc-c46c353e34f4",
+    "saleName": "「訳あり」で検出",
+    "saleEnd": "2026-09-11",
+    "isNew": true,
+    "description": "楽天ウェブサービスAPIから自動取得した商品です。価格・在庫は変動するため商品ページでご確認ください。",
+    "publishedAt": "2026-09-08",
+    "source": "rakuten-auto"
   }
 ]
