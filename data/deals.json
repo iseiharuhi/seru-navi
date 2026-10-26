@@ -324,24 +324,6 @@
     "source": "rakuten-auto"
   },
   {
-    "id": "auto-imadoki-10018182",
-    "title": "【ゆうパケットで送料無料】FUJIFILM・富士フィルム スクエア2P instax SQUARE SQ10 SQ6 SP-3に対応したフィルム チェキスクエア",
-    "store": "rakuten",
-    "category": "ランキング上位",
-    "emoji": "🛍️",
-    "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/imadoki/cabinet/05537211/imgrc0068301731.jpg?_ex=128x128",
-    "originalPrice": null,
-    "salePrice": "2660",
-    "pointRate": 1,
-    "url": "https://hb.afl.rakuten.co.jp/hgc/g00quqfo.542mh39f.g00quqfo.542mia06/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fimadoki%2Fsquare2p-1%2F&rafcid=wsc_i_ra_b686af06-9917-4702-a3cc-c46c353e34f4",
-    "saleName": "楽天ランキング",
-    "saleEnd": "2026-10-29",
-    "isNew": true,
-    "description": "楽天ウェブサービスAPIから自動取得した商品です。価格・在庫は変動するため商品ページでご確認ください。",
-    "publishedAt": "2026-10-26",
-    "source": "rakuten-auto"
-  },
-  {
     "id": "auto-whithwhite-10000218",
     "title": "【ご新規様限定】半額クーポン有！10/24 20:00~10/27 09:59まで！ルームフレグランス ディフューザー リードディフューザー 芳香剤 スティック",
     "store": "rakuten",
@@ -414,8 +396,26 @@
     "source": "rakuten-auto"
   },
   {
+    "id": "auto-mb-10268729",
+    "title": "ポロラルフローレン POLO RALPH LAUREN マフラー メンズ レディース pc0455 002【返品送料無料】[2026AW]",
+    "store": "rakuten",
+    "category": "ランキング上位",
+    "emoji": "🛍️",
+    "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mb/cabinet/img420/pc045501.jpg?_ex=128x128",
+    "originalPrice": null,
+    "salePrice": "10500",
+    "pointRate": 1,
+    "url": "https://hb.afl.rakuten.co.jp/hgc/g00pmr4o.542mhe9b.g00pmr4o.542mid9f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmb%2Fpc0455%2F&rafcid=wsc_i_ra_b686af06-9917-4702-a3cc-c46c353e34f4",
+    "saleName": "楽天ランキング",
+    "saleEnd": "2026-10-29",
+    "isNew": true,
+    "description": "楽天ウェブサービスAPIから自動取得した商品です。価格・在庫は変動するため商品ページでご確認ください。",
+    "publishedAt": "2026-10-26",
+    "source": "rakuten-auto"
+  },
+  {
     "id": "auto-shitamachibaum-10000275",
-    "title": "ZP ＼10/25限定！ポイント10倍★／ 【只今当選確率5倍！】 【単品合計最大18,000円が当たる】バームクーヘンガチャ福袋 ガチャ 2026 食品 バー",
+    "title": "ZP 【当選確率5倍！10/27 9:59まで】 【単品合計最大18,000円が当たる】 バームクーヘンガチャ福袋 ガチャ 2026 食品 バームクーヘンガチャ",
     "store": "rakuten",
     "category": "高ポイント還元",
     "emoji": "🛍️",
